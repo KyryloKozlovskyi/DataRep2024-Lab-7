@@ -14,14 +14,23 @@ app.use(function (req, res, next) {
     next();
 });
 
-// Database Connection with Mongoose
-const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://admin:admin@cluster0.egsdr.mongodb.net/DB11');
-
 // body-parser middleware
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// Database Connection with Mongoose
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://admin:admin@cluster0.egsdr.mongodb.net/DB11');
+
+// Database schema and data model:
+const movieSchema = new mongoose.Schema({
+    title: String,
+    year: String,
+    poster: String
+});
+
+const Movie = mongoose.model('Movie', movieSchema);
 
 // GET request to send json
 app.get('/api/movies', (req, res) => {
