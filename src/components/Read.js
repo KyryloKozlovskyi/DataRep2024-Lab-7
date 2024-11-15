@@ -15,7 +15,7 @@ const Read = () => {
     useEffect(() => {
         axios.get("http://localhost:4000/api/movies").then((responce) => { // API Call
             console.log(responce.data); // Log Obj to the console
-            setMovies(responce.data.movies) // Sets the state
+            setMovies(responce.data) // Sets the state
         }).catch()
     }, []);
 

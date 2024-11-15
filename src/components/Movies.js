@@ -6,7 +6,7 @@ const Movies = (props) => {
     // Individual elements pulled out of the array and assigned unique IDs 
     return props.myMovies.map(
         (movie) => {
-            return <MovieItem myMovie={movie} key={movie.imdbID} />
+            return <MovieItem myMovie={movie} key={movie._id} />
         }
     )
 }
