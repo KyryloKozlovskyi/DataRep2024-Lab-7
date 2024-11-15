@@ -14,6 +14,10 @@ app.use(function (req, res, next) {
     next();
 });
 
+// Database Connection with Mongoose
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://admin:admin@cluster0.egsdr.mongodb.net/DB11');
+
 // body-parser middleware
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
