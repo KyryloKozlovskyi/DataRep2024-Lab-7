@@ -61,9 +61,15 @@ app.get('/api/movies', (req, res) => {
     res.status(200).json({ movies }) // Responds with JSON
 })
 
-// POST request that logs the title, year, and poster URL of the movie object passed from the React app
-app.post("/api/movies", (req, res) => {
-    console.log("Movie added!") // Log to the console
+// Method to Add Data to MongoDB
+app.post('/api/movies', async (req, res) => {
+
+    const { title, year, poster } = req.body;
+
+    const newMovie = new Movie({ title, year, poster });
+    await newMovie.save();
+
+    res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
 })
 
 // Port listener
