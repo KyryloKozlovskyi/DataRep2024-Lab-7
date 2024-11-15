@@ -29,24 +29,29 @@ const movieSchema = new mongoose.Schema({
     year: String,
     poster: String
 });
-
 const Movie = mongoose.model('Movie', movieSchema);
 
 // Method to Add Data to MongoDB
+// Updates the db
 app.post('/api/movies', async (req, res) => {
-
     const { title, year, poster } = req.body;
-
     const newMovie = new Movie({ title, year, poster });
     await newMovie.save();
-
     res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
 })
 
 // Fetch all movie records
+// It’s sent back in JSON format.
 app.get('/api/movies', async (req, res) => {
     const movies = await Movie.find({});
     res.json(movies);
+});
+
+// Retrieve Data by ID
+// If a movie is found, it’s sent back in JSON format.
+app.get('/api/movies/:id', async (req, res) => {
+    const movie = await Movie.findById(req.params.id);
+    res.send(movie);
 });
 
 // Port listener
